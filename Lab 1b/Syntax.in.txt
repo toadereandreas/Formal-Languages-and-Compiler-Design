@@ -1,0 +1,45 @@
+The words - predefined tokens are specified between " and ":
+
+Sintactical rules:
+
+program ::= [decllist ";"] cmpdstmt ";"
+
+decllist ::= declaration | declaration ";" decllist | arraydecl
+
+declaration ::= type1 IDENTIFIER ";" | type1 IDENTIFIER "=" expression
+
+type1 ::= "STRING" | "NUMBER"
+
+arraydecl ::= "ARRAY" type1 "[" nr "]" IDENTIFIER ";"
+
+type  ::= type1 | arraydecl
+
+cmpdstmt ::= "BEGIN" stmtlist "END"
+
+stmtlist ::= stmt | stmt ";" stmtlist
+
+stmt ::= simplstmt | structstmt | declaration
+
+simplstmt ::= assignstmt | iostmt
+
+assignstmt ::= IDENTIFIER "=" expression
+
+expression ::= expression "+" term | term
+
+term ::= term "*" factor | factor
+
+factor ::= "(" expression ")" | IDENTIFIER | IDENTIFIER "[" expression "]"
+
+iostmt ::= "READ" IDENTIFIER | "PRINT" IDENTIFIER
+
+structstmt ::= cmpdstmt | ifstmt | whilestmt | forstmt
+
+ifstmt ::= "IF" condition ":" stmt ";" {["ELSIF" condition ":" stmt ";"]} ["ELSE" stmt ";"] "FI" ";"
+
+whilestmt ::= "WHILE" condition ":" stmt "ELIHW"
+
+forstmt ::= "FOR" IDENTIFIER "IN" "(" expression "," expression ")" ":" stmt ";" "ROF" ";"
+
+condition ::= expression RELATION expression {[and condition]} {[or condition]} 
+
+RELATION ::= "<" | "<=" | "=" | "<>" | ">=" | ">" | "!="
