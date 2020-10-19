@@ -11,7 +11,7 @@ d. Symbols
 Lexic:
 
 a. Special symbols:
- - operators: +, -, *, /, =, <, <=, >, >=, !=, ==, &&, ||, |
+ - operators: +, -, *, /, =, <, <=, >, >=, !=, ==, &&, ||
  - separators: (), [], {}, :, ;, space
  - reserved words: string number if else elif fi while elihw in read print for rof in and or not
 

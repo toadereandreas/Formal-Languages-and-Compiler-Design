@@ -22,22 +22,22 @@ simplstmt ::= assignstmt | iostmt
 
 assignstmt ::= IDENTIFIER "=" expression
 
-expression ::= expression "+" term | term
+expression ::= expression "+" term | term | expression "-" term 
 
-term ::= term "*" factor | factor
+term ::= term "*" factor | factor | term "/" factor
 
 factor ::= "(" expression ")" | IDENTIFIER | IDENTIFIER "[" expression "]"
 
 iostmt ::= "READ" IDENTIFIER | "PRINT" IDENTIFIER
 
-structstmt ::= cmpdstmt | ifstmt | whilestmt | forstmt
+structstmt ::= ifstmt | whilestmt | forstmt
 
-ifstmt ::= "IF" condition ":" stmt ";" {["ELSIF" condition ":" stmt ";"]} ["ELSE" stmt ";"] "FI" ";"
+ifstmt ::= "IF" condition ":" stmtlist ";" {["ELSIF" condition ":" stmt ";"]} ["ELSE" stmt ";"] "FI" ";"
 
-whilestmt ::= "WHILE" condition ":" stmt "ELIHW"
+whilestmt ::= "WHILE" condition ":" stmtlist "ELIHW"
 
-forstmt ::= "FOR" IDENTIFIER "IN" "(" expression "," expression ")" ":" stmt ";" "ROF" ";"
+forstmt ::= "FOR" IDENTIFIER "IN" "(" expression "," expression ")" ":" stmtlist ";" "ROF" ";"
 
 condition ::= expression RELATION expression {[and condition]} {[or condition]} 
 
-RELATION ::= "<" | "<=" | "=" | "<>" | ">=" | ">" | "!="
+RELATION ::= "<" | "<=" | "==" | "<>" | ">=" | ">" | "!="
