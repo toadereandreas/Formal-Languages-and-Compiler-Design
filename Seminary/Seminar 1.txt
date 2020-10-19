@@ -1,0 +1,99 @@
+BNF(Backus-Naur-From)
+
+::= equal by definition (may expand into)
+| -> or, alternative
+
+A sequencte of letter defined in BNF
+<seq_of_letter> ::= <letter> | <letter><seq_of_letters>
+<letter> ::= a | b | .. | z 
+
+A simple expression in BNF(+,*)
+2 + 4 * 5
+<expression> ::= <number> "+" <expre
+
+_______________________________
+
+1. integers in BNF (001 is a valid integer)
+
+<seq_of_numbers> ::= <digit> | <digit> <seq_of_numbers> 
+<digit> ::= 0 | 1 | .. | 9
+<int> ::= <seq_or_numbers> | - <seq_of_numbers> | + <seq_of_numbers>
+
+2. expression that alows +,-,*,/
+
+ex: (2+4-3) * a
+
+<expression> ::= <expression> + <term> | <expression> - <term> | <term>
+<term> ::= <term> * <factor> | <term> / <factor> | <factor>
+<factor> ::= "(" <expression> ")" | <literal>
+<literal> ::= <constant> | <identifier>
+
+===============================================
+EBNF(Extended-Backus-Naur-From)
+
+Nonterminals are not written between <> (normally are written with uppercase)
+Terminals are written between ""
+::= is replaced by =
+
+() - grouping
+
+  BNF:
+
+  <expression> ::= <expression> + <term> | <expression> - <term> | <term>
+
+  EBNF
+
+  EXPRESSION = EXPRESSION ( "+" | "-" ) TERM | TERM
+
+  A = "b" "c" | "d" => cb or d
+  A = "b" ( "c" | "d" ) => bc or bd
+
+[] - optional
+
+   A = "a" ["b"] "c"
+   abc ac
+
+{} - repetition (0 or more)
+A = "1" {"0"}
+1
+10
+100...
+
+3. Integers in EBNF()
+
+INTEGER = [ "+" | "-" ] INTEGER_W_SIGN
+INTEGER_W_SIGN = DIGIT { DIGIT }
+DIGIT = "0" | .. | "9"
+
+3.1 Which are legal integers?
+A) +42 -> ok
+b) +-> not ok
+c) -0 -> ok
+d) VII -> not ok
+e) 007 -> ok
+
+4. Identifier formed by letters and digits and first character is a letter
+
+EBFN:
+ID = LETTER | LETTER {LETTER_OR_DIGIT}
+LETTER_OR_DIGIT = LETTER |DIGIT
+LETTER = "A" | ... | "Z" | "a" | ... | "z" 
+DIGIT = "0" | .. | "9"
+
+5. Normalized integers (zero is without sign, no extra zeros)
+
+EBNF:
+INTEGER = "0" | [SIGN] UNSIGNED_INTEGER
+UNSIGNED_INTEGER = NON_ZERO_DIGIT {DIGIT}
+NON_ZERO_DIGIT = "1" | ... | "9"
+DIGIT = "0" | NON_ZERO_DIGIT
+SIGN = "+" | "-"
+
+6. EBNF for a set of integers ()
+example: (2,3,5,6); ()
+EBNF:
+ARRAY = "(" [INTEGER_LIST] ")"
+INTEGER_LIST = INTEGER | INTEGER { "," INTEGER}
+INTEGER = "0" | [SIGN] UNSIGNED_INTEGER
+UNSIGNED_INTEGER = NON_ZERO_DIGIT {DIGIT}
+NON_ZERO_DIGIT = "1" | ... | "9"
