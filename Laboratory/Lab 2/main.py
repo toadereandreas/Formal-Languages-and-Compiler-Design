@@ -1,19 +1,40 @@
 from HashTable import HashTable
 from SymbolTable import SymbolTable
+from Scanner import readFile, Scanner, reservedWords, separators, operators
+from ProgramInternalForm import PIF
 
-size = 15
-st = SymbolTable(size)
-st.position("andreas")
-st.position("marius")
-st.position("vrajeala")
-st.position("gunoi")
-st.position("ipad")
-st.position("evomag")
-st.position("prajeala")
-st.position("2")
-st.position("14")
-print(st)
-print(st.position("evomag"))
+def main():
+    readFile()
+    fileName = "p3.txt"
+    st = SymbolTable(17)
+    pif = PIF()
+    scanner = Scanner()
+    exceptionMessage = ""
 
-print(st.position("gunoi"))
-print(st.position("evomag"))
+    with open(fileName, 'r') as file:
+        lineCounter = 0
+        for line in file:
+            lineCounter += 1
+            for token in scanner.tokenize(line.strip()):
+                if token in reservedWords+separators+operators:
+                    if token == ' ':
+                        continue
+                    pif.add(token, (0, 0))
+                elif scanner.isIdentifier(token) or scanner.isConstant(token):
+                    id = st.position(token)
+                    pif.add(token, id)
+                else:
+                    exceptionMessage += 'Lexical error at token ' + token + ', at line ' + str(lineCounter) + "\n"
+
+    with open('symbol_table.out', 'w') as writer:
+        writer.write(str(st))
+
+    with open('program_internal_form.out', 'w') as writer:
+        writer.write(str(pif))
+
+    if exceptionMessage == '':
+        print("Lexically correct")
+    else:
+        print(exceptionMessage)
+
+main()
