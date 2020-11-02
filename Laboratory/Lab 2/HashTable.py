@@ -31,6 +31,7 @@ class HashTable:
             hashedKey = self.hash(key)
             self.__values[hashedKey].append(key)
             self.__size += 1
+            return self.position(key)
         else:
             return value
 

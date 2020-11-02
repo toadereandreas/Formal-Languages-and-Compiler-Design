@@ -1,0 +1,10 @@
+x=5;
+y=4;
+z=2@;
+if x >= y and x >= z:
+print "x = #{x} is greatest.";
+elsif y >= z and y >= x:
+print "y = #{y} is greatest.";
+else:
+print "z = #{z} is greatest.";
+fi;

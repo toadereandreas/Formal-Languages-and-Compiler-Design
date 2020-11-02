@@ -2,9 +2,10 @@ x=2;
 y=3;
 z=4;
 if x >= y and x >= z:
-print 'x = #{x} is greatest.';
+print 'x = #{x} greatest.';
 elsif y >= z and y >= x:
-print 'y = #{y} is greatest.';
+print 'y = #{y} greatest.';
 else:
-print 'z = #{z} is greatest.';
+print 'z = #{z} greatest.';
+x
 fi;

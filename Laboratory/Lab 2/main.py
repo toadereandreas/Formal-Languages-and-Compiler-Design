@@ -5,7 +5,7 @@ from ProgramInternalForm import PIF
 
 def main():
     readFile()
-    fileName = "p3.txt"
+    fileName = "p1err.txt"
     st = SymbolTable(17)
     pif = PIF()
     scanner = Scanner()
@@ -27,9 +27,11 @@ def main():
                     exceptionMessage += 'Lexical error at token ' + token + ', at line ' + str(lineCounter) + "\n"
 
     with open('symbol_table.out', 'w') as writer:
+        print("Symbol table: \n" + str(st))
         writer.write(str(st))
 
     with open('program_internal_form.out', 'w') as writer:
+        print("Program internal form: \n" + str(pif))
         writer.write(str(pif))
 
     if exceptionMessage == '':

@@ -24,7 +24,7 @@ class SymbolTable:
         if self.__hashTable.search(key):
             return self.__hashTable.position(key)
         else:
-            self.__hashTable.add(key)
+            return self.__hashTable.add(key)
 
     def __str__(self):
         return str(self.__hashTable)
