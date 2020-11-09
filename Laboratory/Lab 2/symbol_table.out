@@ -1,9 +1,9 @@
 0: deque([]); 
-1: deque(['greatest.']); 
-2: deque([]); 
+1: deque([]); 
+2: deque(['2']); 
 3: deque([]); 
-4: deque(['x', '4']); 
-5: deque(['5', 'y', 'is']); 
+4: deque(['x', 'average']); 
+5: deque(['y']); 
 6: deque(['z']); 
 7: deque([]); 
 8: deque([]); 

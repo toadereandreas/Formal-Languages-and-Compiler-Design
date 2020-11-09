@@ -5,7 +5,7 @@ from ProgramInternalForm import PIF
 
 def main():
     readFile()
-    fileName = "p1err.txt"
+    fileName = "p2.txt"
     st = SymbolTable(17)
     pif = PIF()
     scanner = Scanner()
